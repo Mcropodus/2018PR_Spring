@@ -1,6 +1,7 @@
 # pattern assignment
 import numpy as np
-import sklearn
+from sklearn import naive_bayes
+from sklearn import model_selection as ms
 import cv2
 
 img = cv2.imread('duck_data.jpg')  # open file
@@ -12,15 +13,17 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # RBG to gray
 # cv2.waitKey(0)
 
 img_pixel = np.array(img)
+# print(img_pixel.shape)
 # print(img_pixel)
 
 pixel = img.shape
 height = pixel[0]
 width = pixel[1]
+# print(height, width)
 # print(x, y)
 
 # remove the background
-array = []  # save the data
+array = []  # save the label data
 for i in range(height):
     for j in range(width):
         if img_pixel[i][j] < 230:
@@ -30,21 +33,15 @@ for i in range(height):
             array.append(1)
             continue
 
-img = img_pixel.reshape(img_pixel.shape[0], img_pixel.shape[1])
+img = img_pixel.reshape(img_pixel.shape[0], img_pixel.shape[1])  # array to image
 cv2.imwrite('BackgroundRemove.jpg', img)
-cv2.imshow('image', img)
-cv2.waitKey(0)
-array = np.reshape(array, (height, width))
-print(array)
-
-
-# array = []
-# for i in range(height):
-#     for j in range(width):
-#         if img_pixel[i][j] == 0
-#             array.append(0)
-#         else:
-#             array.append(1)
-#
+# cv2.imshow('image', img)
+# cv2.waitKey(0)
+img_pixel = np.reshape(img_pixel, (height*width, 1))  # reshape the train data
+# array = np.reshape(array, (height*width, 1))
 # print(array)
 
+
+model_naive = naive_bayes.GaussianNB()  # Gaussian model
+model_naive.fit(img_pixel, array)
+print('scoring the naive Bayes : ', model_naive.score(img_pixel, array))
