@@ -35,7 +35,6 @@ array = []  # save the label data
 for i in range(height):
     for j in range(width):
         if img_pixel[i][j] < 225:
-            img_pixel[i][j] = 0
             array.append(0)
         else:
             array.append(1)
@@ -45,23 +44,19 @@ n_array = []  # remove the background without duck
 for i in range(n_height):
     for j in range(n_width):
         if n_img_pixel[i][j] < 225:
-            n_img_pixel[i][j] = 0
             n_array.append(0)
         else:
             n_array.append(0)
             continue
 
-img = img_pixel.reshape(img_pixel.shape[0], img_pixel.shape[1])  # array to image
-cv2.imwrite('BackgroundRemove.jpg', img)
-n_img = n_img_pixel.reshape(n_img_pixel.shape[0], n_img_pixel.shape[1])
+# img = img_pixel.reshape(img_pixel.shape[0], img_pixel.shape[1])  # array to image
+# cv2.imwrite('BackgroundRemove.jpg', img)
+# n_img = n_img_pixel.reshape(n_img_pixel.shape[0], n_img_pixel.shape[1])
 # cv2.imshow('image', n_img)
 # cv2.waitKey(0)
-img_pixel = np.reshape(img_pixel, (height*width, 1))  # reshape the train data
-# array = np.reshape(array, (height*width, 1))
-# print(array)
-
+# img_pixel = np.reshape(img_pixel, (height*width, 1))  # reshape the train data
 # for non_duck data
-n_img_pixel = np.reshape(n_img_pixel, (n_height*n_width, 1))
+# n_img_pixel = np.reshape(n_img_pixel, (n_height*n_width, 1))
 
 ori_img = cv2.imread('duck_data.jpg')
 ori_img = cv2.cvtColor(ori_img, cv2.COLOR_BGR2GRAY)
