@@ -4,6 +4,7 @@ from sklearn import naive_bayes
 from sklearn import model_selection as ms
 import cv2
 import matplotlib.pyplot as plt
+import scipy
 
 img = cv2.imread('duck_data.jpg')  # open file
 non_duck_img = cv2.imread('non_duck.jpg')  # the data without duck
@@ -77,6 +78,19 @@ model_naive.fit(x_train, y_train)
 model_naive.partial_fit(ori_n_img, n_array)
 print('scoring the naive Bayes : ', model_naive.score(x_test, y_test))
 
+sigma_d = model_naive.sigma_[0] ** 0.5
+sigma_n = model_naive.sigma_[1] ** 0.5
+mu_d = model_naive.theta_[0]
+mu_n = model_naive.theta_[1]
+# print(sigma, '\n', mu)
+x_d = np.linspace(mu_d - 3 * sigma_d, mu_d + 3 * sigma_d, 100)
+plt.plot(x_d, scipy.stats.norm.pdf(x_d, mu_d, sigma_d))
+x_n = np.linspace(mu_n - 3 * sigma_n, mu_n + 3 * sigma_n, 100)
+plt.plot(x_n, scipy.stats.norm.pdf(x_n, mu_n, sigma_n))
+plt.show()  # Gaussian curve
+
+
+# predict
 test = cv2.imread('full_duck.jpg')
 test = np.array(test)
 test = cv2.cvtColor(test, cv2.COLOR_BGR2GRAY)
