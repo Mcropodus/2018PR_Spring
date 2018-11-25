@@ -1,7 +1,7 @@
 #Assignment I
-<ul>題目：鴨子辨識</ul>
-<ul>環境：pycharm</ul>
-<ul>使用套件</ul><p>
+<li>題目：鴨子辨識</li>
+<li>環境：pycharm</li>
+<li>使用套件</li><p>
 
 >numpy<p>
 >sklearn<p>
@@ -9,14 +9,14 @@
 >matplotlib<p>
 >scipy<p>
 
-<br><ul>演算法：
+<br><li>演算法：
 將鴨子的資料切下一小塊並轉為灰階，
 首先預設像素值小於225的像素為真值(鴨子為白色)；
 其他像素質則為假值，代表非鴨子。
 將兩類資料非配給貝氏分類器的模型進行訓練，
-再將欲預測的資料(full_duck)丟進去進行預測。</ul>
+再將欲預測的資料(full_duck)丟進去進行預測。</li>
 
-<br><ul>程式架構：
+<br><li>程式架構：
 首先切割出要訓練的資料集，
 分別是鴨子的資料集和非鴨子的資料集。
 <br>
@@ -59,9 +59,9 @@
 所以使用迴圈將label為1(鴨子)的像素設為255並存成圖片。<br>
 ![Alt text](https://i.imgur.com/zEdVAG5.jpg)<br>
 <br>預測出來的圖片為：<br>
-![Alt text](https://i.imgur.com/9xaoA4F.jpg)<br></ul>
-<br><ul>誤差：鴨子是利用像素進行預測，
+![Alt text](https://i.imgur.com/9xaoA4F.jpg)<br></li>
+<br><li>誤差：鴨子是利用像素進行預測，
 所以顏色較近的鵝卵石會被模型誤判。
 為了克服這個問題，
 在建立模型時將沒有鴨子的資料一起訓練了，
-解果比原本好了一些但仍無法完全去除所有誤判的鵝卵石。</ul>
+解果比原本好了一些但仍無法完全去除所有誤判的鵝卵石。</li>
