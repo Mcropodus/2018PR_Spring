@@ -88,23 +88,30 @@ plt.show()  # Gaussian curve
 # predict
 test = cv2.imread('full_duck.jpg')
 test = np.array(test)
-test = cv2.cvtColor(test, cv2.COLOR_BGR2GRAY)
+test_g = cv2.cvtColor(test, cv2.COLOR_BGR2GRAY)
 Pixel = test.shape
 t_height = Pixel[0]
 t_width = Pixel[1]
-test = np.reshape(test, (t_height*t_width, 1))
-y_pred = model_naive.predict(test)
+test_g = np.reshape(test_g, (t_height*t_width, 1))
+y_pred = model_naive.predict(test_g)
+y_pred = np.reshape(y_pred, (t_height, t_width))
+for i in range(t_height):
+    for j in range(t_width):
+        if y_pred[i][j] == 0:
+            continue
+        else:
+            test[i][j] = [255, 0, 0]
+
 # for i in range(t_height*t_width):
 #     if y_pred[i] == 1:
 #         print(1)
-result = np.reshape(y_pred, (t_height, t_width))
 # print(result)
-for i in range(t_height):
-    for j in range(t_width):
-        if result[i][j] > 0:
-            result[i][j] = 255
-        else:
-            continue
-cv2.imwrite('result.jpg', result)
+# for i in range(t_height):
+#     for j in range(t_width):
+#         if result[i][j] > 0:
+#             result[i][j] = 255
+#         else:
+#             continue
+cv2.imwrite('result_RBG.jpg', test)
 # cv2.imshow('result', result)
 # cv2.waitKey(0)

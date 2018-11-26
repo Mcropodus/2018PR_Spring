@@ -59,7 +59,9 @@
 所以使用迴圈將label為1(鴨子)的像素設為255並存成圖片。<br>
 ![Alt text](https://i.imgur.com/zEdVAG5.jpg)<br>
 <br>預測出來的圖片為：<br>
-![Alt text](https://i.imgur.com/9xaoA4F.jpg)<br></li>
+![Alt text](https://i.imgur.com/9xaoA4F.jpg)<br>
+![Alt text](https://i.imgur.com/1jJo6Tt.jpg)<br>
+RBG的圖為幫預測出來的鴨子在原圖上色<br></li>
 <br><li>誤差：鴨子是利用像素進行預測，
 所以顏色較近的鵝卵石會被模型誤判。
 為了克服這個問題，
